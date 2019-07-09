@@ -70,7 +70,8 @@
 
   <select id='ratnameSelect' name='ratname'>
   </select>
-  Date : <input type="date" name="date">
+  Start Date : <input type="date" name="startdate">
+  End Date : <input type="date" name="enddate">
 
 <input type = "submit" name="submit">
 </form>
@@ -92,11 +93,11 @@ if ($conn->connect_error) {
 }
 
 if ($_POST["ratname"]=='*'){
-        $sql = "SELECT * from sessions where sessiondate like '".$conn->real_escape_string($_POST["date"])."' and experimenter like '".$conn->real_escape_string($_POST["experimenter"]). "';";
+        $sql = "SELECT * from sessions where sessiondate between '".$conn->real_escape_string($_POST["startdate"])."' and '".$conn->real_escape_string($_POST["enddate"])."' and experimenter like '".$conn->real_escape_string($_POST["experimenter"]). "';";
 }
 
 else {
-        $sql = "SELECT * from sessions where sessiondate like '".$conn->real_escape_string($_POST["date"])."' and ratname like '".$conn->real_escape_string($_POST["ratname"]). "';";
+        $sql = "SELECT * from sessions where sessiondate between '".$conn->real_escape_string($_POST["startdate"])."' and '".$conn->real_escape_string($_POST["enddate"])."' and ratname like '".$conn->real_escape_string($_POST["ratname"]). "';";
 
 }
 

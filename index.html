@@ -42,15 +42,16 @@
     var firstselect = document.getElementById("ratnameSelect");
     firstselect.options[0] = new Option("All", "*", true, true)
     select.onchange = updateSubCats;
+    select.options[0] = new Option("All", "*", true, true)
     for(var i = 1; i < categories.length; i++){
       select.options[i] = new Option(categories[i].experimenter);
     }
-    select.options[0] = new Option("All", "*", true, true)
   }
   function updateSubCats(){
     var catSelect = this;
     var catid = this.value;
     var subcatSelect = document.getElementById("ratnameSelect");
+    subcatSelect.options[0] = new Option("All", "*", true, true)
     subcatSelect.options.length = 0; //delete all options if any present
     for(var i = 1; i < subcats[catid].length; i++){
       subcatSelect.options[i] = new Option(subcats[catid][i].ratname);

@@ -45,8 +45,8 @@
 
     select.onchange = updateSubCats;
     select.options[0] = new Option("All", "*", true, true)
-    for(var i = 1; i < categories.length+1; i++){
-      select.options[i] = new Option(categories[i-1.experimenter);
+    for(var i = 1; i < categories.length; i++){
+      select.options[i] = new Option(categories[i].experimenter);
     }
   }
   function updateSubCats(){
@@ -55,8 +55,8 @@
     var subcatSelect = document.getElementById("ratnameSelect");
     subcatSelect.options.length = 0; //delete all options if any present
     subcatSelect.options[0] = new Option("All", "*", true, true)
-    for(var i = 1; i < subcats[catid].length+1; i++){
-      subcatSelect.options[i] = new Option(subcats[catid][i-1].ratname);
+    for(var i = 1; i < subcats[catid].length; i++){
+      subcatSelect.options[i] = new Option(subcats[catid][i].ratname);
     }
   }
 </script>
@@ -66,7 +66,7 @@
 <body onload='loadCategories()'>
 <div class="container">
   <div class="page-header">
-    <h1 class="text-xs-center">LIMLab Internal</h1>
+    <h1>LIMLab Internal Site</h1>
   </div>
 <form action="" method="post">
   <select id='experimenterSelect' name='experimenter'>

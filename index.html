@@ -45,8 +45,8 @@
 
     select.onchange = updateSubCats;
     select.options[0] = new Option("All", "*", true, true)
-    for(var i = 0; i < categories.length; i++){
-      select.options[i+1] = new Option(categories[i].experimenter);
+    for(var i = 1; i < categories.length+1; i++){
+      select.options[i] = new Option(categories[i-1.experimenter);
     }
   }
   function updateSubCats(){
@@ -55,8 +55,8 @@
     var subcatSelect = document.getElementById("ratnameSelect");
     subcatSelect.options.length = 0; //delete all options if any present
     subcatSelect.options[0] = new Option("All", "*", true, true)
-    for(var i = 0; i < subcats[catid].length; i++){
-      subcatSelect.options[i+1] = new Option(subcats[catid][i].ratname);
+    for(var i = 1; i < subcats[catid].length+1; i++){
+      subcatSelect.options[i] = new Option(subcats[catid][i-1].ratname);
     }
   }
 </script>

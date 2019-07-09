@@ -96,7 +96,12 @@ if ($conn->connect_error) {
 }
 
 if ($_POST["ratname"]=='*'){
+	if ($_POST["experimenter"]=='*') {
+		$sql = "SELECT * from sessions where sessiondate between '".$conn->real_escape_string($_POST["startdate"])."' and '".$conn->real_escape_string($_POST["enddate"])."';";
+	}
+	else {
         $sql = "SELECT * from sessions where sessiondate between '".$conn->real_escape_string($_POST["startdate"])."' and '".$conn->real_escape_string($_POST["enddate"])."' and experimenter like '".$conn->real_escape_string($_POST["experimenter"]). "';";
+	}
 }
 
 else {

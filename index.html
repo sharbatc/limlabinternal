@@ -62,16 +62,27 @@
 <body onload='loadCategories()'>
 <div class="container">
   <div class="page-header">
-    <h1 class="display-3" class="text-xs-center">LIMLab Internal</h1>
+    <h1 class="text-xs-center" class="display-3">LIMLab Internal</h1>
   </div>
 <form action="" method="post">
   <select id='experimenterSelect' name='experimenter'>
   </select>
-
+  <script type="text/javascript">
+  document.getElementById('experimenter').value = "<?php echo $_GET['experimenter'];?>";
+</script>
   <select id='ratnameSelect' name='ratname'>
   </select>
-  Start Date : <input type="date" name="startdate">
-  End Date : <input type="date" name="enddate">
+  <script type="text/javascript">
+  document.getElementById('ratnameSelect').value = "<?php echo $_GET['ratname'];?>";
+</script>
+  Start Date : <input type="date" name="startdate" id="startdate">
+  <script type="text/javascript">
+  document.getElementById('startdate').value = "<?php echo $_GET['startdate'];?>";
+</script>
+  End Date : <input type="date" name="enddate" id="enddate">
+  <script type="text/javascript">
+  document.getElementById('enddate').value = "<?php echo $_GET['enddate'];?>";
+</script>
 
 <input type = "submit" name="submit">
 </form>

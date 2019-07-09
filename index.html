@@ -39,21 +39,22 @@
   ?>
   function loadCategories(){
     var select = document.getElementById("experimenterSelect");
+    var firstselect = document.getElementById("ratnameSelect");
+    firstselect.options[0] = new Option("All", "*", true, true)
     select.onchange = updateSubCats;
-    for(var i = 0; i < categories.length; i++){
+    for(var i = 1; i < categories.length; i++){
       select.options[i] = new Option(categories[i].experimenter);
     }
-    select.options[i] = new Option("All", "*", true, true)
+    select.options[0] = new Option("All", "*", true, true)
   }
   function updateSubCats(){
     var catSelect = this;
     var catid = this.value;
     var subcatSelect = document.getElementById("ratnameSelect");
     subcatSelect.options.length = 0; //delete all options if any present
-    for(var i = 0; i < subcats[catid].length; i++){
+    for(var i = 1; i < subcats[catid].length; i++){
       subcatSelect.options[i] = new Option(subcats[catid][i].ratname);
     }
-    subcatSelect.options[i] = new Option("All", "*", true, true)
   }
 </script>
 
@@ -67,22 +68,10 @@
 <form action="" method="post">
   <select id='experimenterSelect' name='experimenter'>
   </select>
-  <script type="text/javascript">
-  document.getElementById('experimenter').value = "<?php echo $_GET['experimenter'];?>";
-</script>
   <select id='ratnameSelect' name='ratname'>
   </select>
-  <script type="text/javascript">
-  document.getElementById('ratnameSelect').value = "<?php echo $_GET['ratname'];?>";
-</script>
-  Start Date : <input type="date" name="startdate" id="startdate">
-  <script type="text/javascript">
-  document.getElementById('startdate').value = "<?php echo $_GET['startdate'];?>";
-</script>
-  End Date : <input type="date" name="enddate" id="enddate">
-  <script type="text/javascript">
-  document.getElementById('enddate').value = "<?php echo $_GET['enddate'];?>";
-</script>
+  Start Date : <input type="date" name="startdate">
+  End Date : <input type="date" name="enddate">
 
 <input type = "submit" name="submit">
 </form>

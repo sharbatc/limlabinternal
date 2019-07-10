@@ -164,7 +164,7 @@ if (mysqli_num_rows($result) > 0) {
   echo "</div>"; 
   }
   elseif (isset($_POST["waterlog"])) {
-    echo "<table class=\"table-bordered\"><tr><th class = \"text-justify\">Experimenter</th><th>Ratname</th><th>Date</th><th>Water Start</th><th>Water End</th><th>Ad Lib Start</th><th>Ad Lib End</th></tr>";
+    echo "<table class=\"table-hover table-bordered table-striped\"><tr><th class = \"text-justify\">Experimenter</th><th>Ratname</th><th>Date</th><th>Water Start</th><th>Water End</th><th>Ad Lib Start</th><th>Ad Lib End</th></tr>";
     while ($row = $result->fetch_assoc()) {
       echo "<tr><td>".$row["exp_id"]."</td><td>".$row["animal_id"]."</td><td>".$row["date"]."</td><td>".$row["water_start"]."</td><td>".$row["water_end"]."</td><td>".$row["ad_lib_start"]."</td><td>".$row["ad_lib_end"]."</td><tr>";
     }
@@ -173,9 +173,9 @@ if (mysqli_num_rows($result) > 0) {
   }
   else
   {
-  echo "<table class=\"table-bordered\"><tr><th class = \"text-justify\">Experimenter</th><th>Ratname</th><th class = \"text-justify\">Date</th><th class = \"text-justify\">Rigname</th><th class = \"text-justify\">Start</th><th class = \"text-justify\">End</th><th class = \"text-justify\">No. Trials</th><th class = \"text-justify\">Total Correct</th><th class = \"text-justify\">Left Correct</th><th class = \"text-justify\">Right Correct</th><th class = \"text-justify\">% Violations</th><th class = \"text-justify\">Left pokes</th><th class = \"text-justify\">Center pokes</th><th class = \"text-justify\">Right pokes</th></tr>";
+  echo "<table class=\"table-hover table-bordered table-striped\"><tr><th class = \"text-justify\">Experimenter</th><th>Ratname</th><th class = \"text-justify\">Date</th><th class = \"text-justify\">Rigname</th><th class = \"text-center\">Start</th><th class = \"text-center\">End</th><th class = \"text-justify\">No. Trials</th><th class = \"text-justify\">Total Correct</th><th class = \"text-justify\">Left Correct</th><th class = \"text-justify\">Right Correct</th><th class = \"text-justify\">% Violations</th><th class = \"text-justify\">Left pokes</th><th class = \"text-justify\">Center pokes</th><th class = \"text-justify\">Right pokes</th></tr>";
   while ( $row = $result->fetch_assoc()) {
-    echo "<tr><td>".$row["experimenter"]."</td><td>".$row["ratname"]."</td><td>".$row["sessiondate"]."</td><td>".$row["hostname"]."</td><td>".$row["starttime"]."</td><td>".$row["endtime"]."</td><td>".$row["n_done_trials"].$row["total_correct"]."</td><td>".$row["left_correct"]."</td><td>".$row["right_correct"]."</td><td>".$row["percent_violations"]."</td><td>".$row["left_pokes"]."</td><td>".$row["center_pokes"]."</td><td>".$row["right_pokes"]."</td></tr>";
+    echo "<tr><td>".$row["experimenter"]."</td><td>".$row["ratname"]."</td><td>".$row["sessiondate"]."</td><td>".$row["hostname"]."</td><td>".$row["starttime"]."</td><td>".$row["endtime"]."</td><td>".$row["n_done_trials"]."</td><td>".$row["total_correct"]."</td><td>".$row["left_correct"]."</td><td>".$row["right_correct"]."</td><td class=\"text-center\">".$row["percent_violations"]."</td><td class=\"text-center\">".$row["left_pokes"]."</td><td class=\"text-center\">".$row["center_pokes"]."</td><td>".$row["right_pokes"]."</td></tr>";
     }
   echo "</table>";
   echo "</div>";
@@ -190,7 +190,7 @@ else {
 mysqli_close($conn);
 }
 ?>
-<footer class="fixed-bottom font-small blue">
+<footer class="page-footer font-small primary-color-dark fixed-bottom">
 <br><br>
   <div class="footer-copyright text-center">© 2019 Akrami Lab<br>
     <a href="https://bit.ly/akramilabwiki" target="_blank"> Lab Wiki</a>

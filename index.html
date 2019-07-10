@@ -38,6 +38,8 @@
     echo "var subcats = $jsonSubCats; \n";
   ?>
   function loadCategories(){
+    document.getElementById('startdate').value = new Date().toDateInputValue();
+    document.getElementById('enddate').value = new Date().toDateInputValue();
     var select = document.getElementById("experimenterSelect");
     //if you want all of everything
     var firstselect = document.getElementById("ratnameSelect");
@@ -75,8 +77,8 @@
   </select>
   Animal ID :<select id='ratnameSelect' name='ratname'>
   </select>
-  Start Date : <input type="date" name="startdate">
-  End Date : <input type="date" name="enddate">
+  Start Date : <input type="date" name="startdate" id="startdate">
+  End Date : <input type="date" name="enddate" id="enddate">
 
 <input type = "submit" name="submit">
 </form>

@@ -156,9 +156,9 @@ $result = $conn->query($sql);
 if (mysqli_num_rows($result) > 0) {
   echo "<div class = \"container\">";
   if (isset($_POST["masslog"])) {
-    echo "<table class=\"table-hover table-bordered table-striped\"><tr><th class = \"text-justify\">Experimenter</th><th>Ratname</th><th>Date</th><th>Mass</th></tr>";
+    echo "<table class=\"table-hover table-bordered table-striped\"><tr><th class = \"text-justify\">Experimenter</th><th>Ratname</th><th class = \"text-center\">Date</th><th>Mass (gm)</th></tr>";
     while ($row = $result->fetch_assoc()) {
-      echo "<tr><td>".$row["exp_id"]."</td><td>".$row["animal_ID"]."</td><td>".$row["date"]."</td><td>".$row["mass"]."</td><tr>";
+      echo "<tr><td>".$row["exp_id"]."</td><td>".$row["animal_ID"]."</td><td>".$row["date"]."</td><td class = \"text-right\">".$row["mass"]."</td><tr>";
     }
   echo "</table>";
   echo "</div>"; 

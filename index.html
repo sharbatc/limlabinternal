@@ -105,33 +105,33 @@ if ($conn->connect_error) {
 
 
 if (isset($_POST["masslog"])){
-//   if ($_POST["ratname"]=='*'){
-//     if ($_POST["experimenter"]=='*') {
-//       $sql = "SELECT * from mass_log where date between '".$conn->real_escape_string($_POST["startdate"])."' and '".$conn->real_escape_string($_POST["enddate"])."';";
-//   }
-//   else {
-//         $sql = "SELECT * from mass_log where date between '".$conn->real_escape_string($_POST["startdate"])."' and '".$conn->real_escape_string($_POST["enddate"])."' and exp_id = '".$conn->real_escape_string($_POST["experimenter"]). "';";
-//   }
-// }
-// else {
-//         $sql = "SELECT * from mass_log where date between '".$conn->real_escape_string($_POST["startdate"])."' and '".$conn->real_escape_string($_POST["enddate"])."' and animal_ID like '".$conn->real_escape_string($_POST["ratname"]). "';";
+  if ($_POST["ratname"]=='*'){
+    if ($_POST["experimenter"]=='*') {
+      $sql = "SELECT * from mass_log where date between '".$conn->real_escape_string($_POST["startdate"])."' and '".$conn->real_escape_string($_POST["enddate"])."';";
+  }
+  else {
+        $sql = "SELECT * from mass_log where date between '".$conn->real_escape_string($_POST["startdate"])."' and '".$conn->real_escape_string($_POST["enddate"])."' and exp_id = '".$conn->real_escape_string($_POST["experimenter"]). "';";
+  }
+}
+else {
+        $sql = "SELECT * from mass_log where date between '".$conn->real_escape_string($_POST["startdate"])."' and '".$conn->real_escape_string($_POST["enddate"])."' and animal_ID like '".$conn->real_escape_string($_POST["ratname"]). "';";
 
-// }
+}
 }
 
 elseif (isset($_POST["waterlog"])){
-//   if ($_POST["ratname"]=='*'){
-//     if ($_POST["experimenter"]=='*') {
-//       $sql = "SELECT * from water_log where date between '".$conn->real_escape_string($_POST["startdate"])."' and '".$conn->real_escape_string($_POST["enddate"])."';";
-//   }
-//   else {
-//         $sql = "SELECT * from mass_log where date between '".$conn->real_escape_string($_POST["startdate"])."' and '".$conn->real_escape_string($_POST["enddate"])."' and exp_id = '".$conn->real_escape_string($_POST["experimenter"]). "';";
-//   }
-// }
-// else {
-//         $sql = "SELECT * from water_log where date between '".$conn->real_escape_string($_POST["startdate"])."' and '".$conn->real_escape_string($_POST["enddate"])."' and animal_id like '".$conn->real_escape_string($_POST["ratname"]). "';";
+  if ($_POST["ratname"]=='*'){
+    if ($_POST["experimenter"]=='*') {
+      $sql = "SELECT * from water_log where date between '".$conn->real_escape_string($_POST["startdate"])."' and '".$conn->real_escape_string($_POST["enddate"])."';";
+  }
+  else {
+        $sql = "SELECT * from mass_log where date between '".$conn->real_escape_string($_POST["startdate"])."' and '".$conn->real_escape_string($_POST["enddate"])."' and exp_id = '".$conn->real_escape_string($_POST["experimenter"]). "';";
+  }
+}
+else {
+        $sql = "SELECT * from water_log where date between '".$conn->real_escape_string($_POST["startdate"])."' and '".$conn->real_escape_string($_POST["enddate"])."' and animal_id like '".$conn->real_escape_string($_POST["ratname"]). "';";
 
-// }
+}
 }
 
 else
@@ -161,7 +161,7 @@ if (mysqli_num_rows($result) > 0) {
       echo "<tr><td>".$row["exp_id"]."</td><td>".$row["animal_ID"]."</td><td>".$row["date"]."</td><td>".$row["mass"]."</td><tr>";
     }
   }
-  elseif (isset($_POST["waterlog"])) {
+  elseif (isset($_POST[""])) {
     echo "<table class=\"table-bordered\"><tr><th class = \"text-justify\">Experimenter</th><th>Ratname</th><th>Date</th><th>Water Start</th><th>Water End</th><th>Ad Lib Start</th><th>Ad Lib End</th></tr>";
     while ($row = $result->fetch_assoc()) {
       echo "<tr><td>".$row["exp_id"]."</td><td>".$row["animal_id"]."</td><td>".$row["date"]."</td><td>".$row["water_start"]."</td><td>".$row["water_end"]."</td><td>".$row["ad_lib_start"]."</td><td>".$row["ad_lib_end"]."</td><tr>";

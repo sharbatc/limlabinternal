@@ -38,8 +38,9 @@
     echo "var subcats = $jsonSubCats; \n";
   ?>
   function loadCategories(){
-    document.getElementById('startdate').value = new Date().toDateInputValue();
-    document.getElementById('enddate').value = new Date().toDateInputValue();
+    //default the date of start and enddate
+    document.getElementById("startdate").valueAsDate = new Date();
+    document.getElementById("enddate").valueAsDate = new Date();
     var select = document.getElementById("experimenterSelect");
     //if you want all of everything
     var firstselect = document.getElementById("ratnameSelect");

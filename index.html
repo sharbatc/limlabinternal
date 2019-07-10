@@ -72,7 +72,7 @@
     <img src="./limlabheader.jpeg" class="img-fluid" alt="Responsive image">
     <h1 class="text-center display-3">LIMLab Internal</h1>
   </div>
-  <p class="text-justify">This page gives access to experimenters an overview of recent data on their animals. Please select the experimenter name, animal ID, and dates for which you want the information.</p>
+  <p class="text-justify">This page gives experimenters an overview of recent data on their animals. Please select the experimenter name, animal ID, and dates for which you want the information.</p>
 <div class="col-sm">
 <form action="" method="post">
   Experimenter : <select id='experimenterSelect' name='experimenter'>
@@ -103,6 +103,39 @@ if ($conn->connect_error) {
         die("Connection failed: ".mysql_connect_error());
 }
 
+
+if ($_POST["masslog"])=='mass_log'){
+  if ($_POST["ratname"]=='*'){
+    if ($_POST["experimenter"]=='*') {
+      $sql = "SELECT * from mass_log where date between '".$conn->real_escape_string($_POST["startdate"])."' and '".$conn->real_escape_string($_POST["enddate"])."';";
+  }
+  else {
+        $sql = "SELECT * from mass_log where date between '".$conn->real_escape_string($_POST["startdate"])."' and '".$conn->real_escape_string($_POST["enddate"])."' and exp_id = '".$conn->real_escape_string($_POST["experimenter"]). "';";
+  }
+}
+else {
+        $sql = "SELECT * from mass_log where date between '".$conn->real_escape_string($_POST["startdate"])."' and '".$conn->real_escape_string($_POST["enddate"])."' and animal_ID like '".$conn->real_escape_string($_POST["ratname"]). "';";
+
+}
+}
+
+elseif ($_POST["waterlog"])=='water_log'){
+  if ($_POST["ratname"]=='*'){
+    if ($_POST["experimenter"]=='*') {
+      $sql = "SELECT * from water_log where date between '".$conn->real_escape_string($_POST["startdate"])."' and '".$conn->real_escape_string($_POST["enddate"])."';";
+  }
+  else {
+        $sql = "SELECT * from mass_log where date between '".$conn->real_escape_string($_POST["startdate"])."' and '".$conn->real_escape_string($_POST["enddate"])."' and exp_id = '".$conn->real_escape_string($_POST["experimenter"]). "';";
+  }
+}
+else {
+        $sql = "SELECT * from water_log where date between '".$conn->real_escape_string($_POST["startdate"])."' and '".$conn->real_escape_string($_POST["enddate"])."' and animal_id like '".$conn->real_escape_string($_POST["ratname"]). "';";
+
+}
+}
+
+else
+{
 if ($_POST["ratname"]=='*'){
 	if ($_POST["experimenter"]=='*') {
 		$sql = "SELECT * from sessions where sessiondate between '".$conn->real_escape_string($_POST["startdate"])."' and '".$conn->real_escape_string($_POST["enddate"])."';";
@@ -116,17 +149,33 @@ else {
         $sql = "SELECT * from sessions where sessiondate between '".$conn->real_escape_string($_POST["startdate"])."' and '".$conn->real_escape_string($_POST["enddate"])."' and ratname like '".$conn->real_escape_string($_POST["ratname"]). "';";
 
 }
+}
 
 $result = $conn->query($sql);
 
 if (mysqli_num_rows($result) > 0) {
-  echo "<div class = \"container\">";
-    echo "<table class=\"table-bordered\"><tr><th class = \"text-justify\">Experimenter</th><th>Ratname</th><th>Date</th><th>Hostname</th><th>Start</th><th>End</th><th>No. Trials</th></tr>";
-    while ( $row = $result->fetch_assoc()) {
-      echo "<tr><td>".$row["experimenter"]."</td><td>".$row["ratname"]."</td><td>".$row["sessiondate"]."</td><td>".$row["hostname"]."</td><td>".$row["starttime"]."</td><td>".$row["endtime"]."</td><td>".$row["n_done_trials"]."</td></tr>";
+  echo "<div class = \"container-fluid\">";
+  if ($_POST["masslog"] == "mass_log") {
+    echo "<table class=\"table-bordered\"><tr><th class = \"text-justify\">Experimenter</th><th>Ratname</th><th>Date</th><th>Mass</th></tr>";
+    while ($row = $result->fetch_assoc()) {
+      echo "<tr><td>".$row["exp_id"]."</td><td>".$row["animal_ID"]."</td><td>".$row["date"]."</td><td>".$row["mass"]."</td><tr>";
     }
-    echo "</table>";
-    echo "</div>";
+  }
+  elseif ($_POST["waterlog"] == "water_log") {
+    echo "<table class=\"table-bordered\"><tr><th class = \"text-justify\">Experimenter</th><th>Ratname</th><th>Date</th><th>Water Start</th><th>Water End</th><th>Ad Lib Start</th><th>Ad Lib End</th></tr>";
+    while ($row = $result->fetch_assoc()) {
+      echo "<tr><td>".$row["exp_id"]."</td><td>".$row["animal_id"]."</td><td>".$row["date"]."</td><td>".$row["water_start"]."</td><td>".$row["water_end"]."</td><td>".$row["ad_lib_start"]."</td><td>".$row["ad_lib_end"]."</td><tr>";
+    }
+  }
+  else
+  {
+  echo "<table class=\"table-bordered\"><tr><th class = \"text-justify\">Experimenter</th><th>Ratname</th><th>Date</th><th>Hostname</th><th>Start</th><th>End</th><th>No. Trials</th></tr>";
+  while ( $row = $result->fetch_assoc()) {
+    echo "<tr><td>".$row["experimenter"]."</td><td>".$row["ratname"]."</td><td>".$row["sessiondate"]."</td><td>".$row["hostname"]."</td><td>".$row["starttime"]."</td><td>".$row["endtime"]."</td><td>".$row["n_done_trials"]."</td></tr>";
+    }
+  echo "</table>";
+  echo "</div>";
+}
 }
 else {
   echo "<div class = \"container\">";

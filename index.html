@@ -73,6 +73,8 @@
     <h1 class="text-center display-3">LIMLab Internal</h1>
   </div>
   <p class="text-justify">This page gives access to experimenters an overview of recent data on their animals. Please select the experimenter name, animal ID, and dates for which you want the information.</p>
+<div class="col-sm">
+  <h2>Experiments</h2>
 <form action="" method="post">
   Experimenter : <select id='experimenterSelect' name='experimenter'>
   </select>
@@ -83,6 +85,20 @@
 
 <input type = "submit" name="submit">
 </form>
+</div>
+<div class="col-sm">
+<h2>Mass</h2>
+<form action="" method="post">
+  Experimenter : <select id='experimenterSelect' name='experimenter'>
+  </select>
+  Animal ID :<select id='ratnameSelect' name='ratname'>
+  </select>
+  Start Date : <input type="date" name="startdate" id="startdate">
+  End Date : <input type="date" name="enddate" id="enddate">
+
+<input type = "submit" name="submit">
+</form>
+</div>
 </div>
 
 <?php

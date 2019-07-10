@@ -104,7 +104,7 @@ if ($conn->connect_error) {
 }
 
 
-if ($_POST["masslog"])=='mass_log'){
+if (isset($_POST["masslog"])){
 //   if ($_POST["ratname"]=='*'){
 //     if ($_POST["experimenter"]=='*') {
 //       $sql = "SELECT * from mass_log where date between '".$conn->real_escape_string($_POST["startdate"])."' and '".$conn->real_escape_string($_POST["enddate"])."';";
@@ -119,7 +119,7 @@ if ($_POST["masslog"])=='mass_log'){
 // }
 }
 
-elseif ($_POST["waterlog"])=='water_log'){
+elseif (isset($_POST["waterlog"])){
 //   if ($_POST["ratname"]=='*'){
 //     if ($_POST["experimenter"]=='*') {
 //       $sql = "SELECT * from water_log where date between '".$conn->real_escape_string($_POST["startdate"])."' and '".$conn->real_escape_string($_POST["enddate"])."';";
@@ -155,13 +155,13 @@ $result = $conn->query($sql);
 
 if (mysqli_num_rows($result) > 0) {
   echo "<div class = \"container-fluid\">";
-  if ($_POST["masslog"] == "mass_log") {
+  if (isset($_POST["masslog"]) {
     echo "<table class=\"table-bordered\"><tr><th class = \"text-justify\">Experimenter</th><th>Ratname</th><th>Date</th><th>Mass</th></tr>";
     while ($row = $result->fetch_assoc()) {
       echo "<tr><td>".$row["exp_id"]."</td><td>".$row["animal_ID"]."</td><td>".$row["date"]."</td><td>".$row["mass"]."</td><tr>";
     }
   }
-  elseif ($_POST["waterlog"] == "water_log") {
+  elseif (isset($_POST["waterlog"])) {
     echo "<table class=\"table-bordered\"><tr><th class = \"text-justify\">Experimenter</th><th>Ratname</th><th>Date</th><th>Water Start</th><th>Water End</th><th>Ad Lib Start</th><th>Ad Lib End</th></tr>";
     while ($row = $result->fetch_assoc()) {
       echo "<tr><td>".$row["exp_id"]."</td><td>".$row["animal_id"]."</td><td>".$row["date"]."</td><td>".$row["water_start"]."</td><td>".$row["water_end"]."</td><td>".$row["ad_lib_start"]."</td><td>".$row["ad_lib_end"]."</td><tr>";

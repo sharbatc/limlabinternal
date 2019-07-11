@@ -5,8 +5,11 @@
   $dbname = "akrami_db";
   $db = new mysqli($servername, $username, $password, $dbname);//set your database handler
   $query = "SELECT * FROM sess_started where sessiondate like CURDATE() and was_ended like 0;";
+  $currdate = "SELECT CURDATE()";
+  $result_date = $db->query($currdate);
   $result = $db->query($query);
-
+  echo "<div class=\"col-sm-4\">"
+  echo "<h3>Currently Training, ".$result_date."</h3>";
   echo "<table class=\"table-hover table-bordered table-striped\"><tr><th class = \"text-justify\">Rig Name</th><th>Ratname</th><th>Date</th><th>Start Time</th><th></tr>";
   while ($row = $result->fetch_assoc()){
   	echo "<tr>"; 
@@ -17,7 +20,8 @@
   	echo "</tr>";
  }
 
- echo "</table><br><br>";
+ echo "</table><br>";
+ echo "</div>";
 
  mysqli_close($db);
  ?> 

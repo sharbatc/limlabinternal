@@ -7,7 +7,7 @@
 
   $query = "SELECT * FROM sess_started where sessiondate like CURDATE() and was_ended like 0 ORDER BY hostname;";
   $result = $db->query($query);
-  echo "Today's Date :".date('Y-m-d');
+  echo "<div class = \"row\">";
   echo "<div class=\"col-sm-4\">";
   echo "<h4 class= \"text-justify\">Presently training </h4>";
   echo "<table class=\"table-hover table-bordered table-striped\"><tr><th class = \"text-justify\">Rig Name</th><th>Ratname</th><th>Start Time</th><th></tr>";
@@ -36,6 +36,7 @@
 	}
 
   echo "</table><br>";
+  echo "</div>";
   echo "</div>";
 
  mysqli_close($db);

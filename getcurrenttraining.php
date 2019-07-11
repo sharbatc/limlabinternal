@@ -5,9 +5,9 @@
   $dbname = "akrami_db";
   $db = new mysqli($servername, $username, $password, $dbname);
 
-  $query = "SELECT * FROM sess_started where sessiondate like CURDATE() and was_ended like 0;";
+  $query = "SELECT * FROM sess_started where sessiondate like CURDATE() and was_ended like 0 ORDER BY hostname;";
   $result = $db->query($query);
-
+  echo "div class=\"row\"";
   echo "Today's Date :".date('Y-m-d');
   echo "<div class=\"col-sm-4\">";
   echo "<h4 class= \"text-justify\">Presently training </h4>";
@@ -22,7 +22,7 @@
 
   echo "</table><br>";
   echo "</div>";
-  $last_query = "SELECT * from sess_started where sessiondate like CURDATE() and was_ended like 1 ORDER BY starttime DESC limit 6;";
+  $last_query = "(SELECT * from sess_started where sessiondate like CURDATE() and was_ended like 1 ORDER BY starttime DESC limit 6) ORDER BY hostname;";
   $result = $db->query($last_query);
   echo "<div class=\"col-sm-4\">";
   echo "<h4 class= \"text-justify\">Last trained </h4>";
@@ -37,6 +37,8 @@
 
   echo "</table><br>";
   echo "</div>";
+
+  echo "</div>"
 
  mysqli_close($db);
  ?> 

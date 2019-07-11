@@ -8,7 +8,7 @@
   $result = $db->query($query);
   $date = $db->query("SELECT CURDATE();");
   echo "<div class=\"col-sm-4\">";
-  echo "<h4 class= \"text-center\"> Date : ".$date->fetch_assoc()."</h4>";
+  echo "<h4 class= \"text-center\"> Date : ".$date->fetch_assoc()[0]."</h4>";
   echo "<table class=\"table-hover table-bordered table-striped\"><tr><th class = \"text-justify\">Rig Name</th><th>Ratname</th><th>Start Time</th><th></tr>";
   while ($row = $result->fetch_assoc()){
   	echo "<tr>"; 

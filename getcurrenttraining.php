@@ -22,8 +22,8 @@
 
   echo "</table><br>";
   echo "</div>";
-  $last_query = "SELECT * from sess_started where sessiondate like CURDATE() and was_ended like 1 ORDER BY starttime DESC limit 6;"
-  $result = $db->query($last_query)
+  $last_query = "SELECT * from sess_started where sessiondate like CURDATE() and was_ended like 1 ORDER BY starttime DESC limit 6;";
+  $result = $db->query($last_query);
   echo "<div class=\"col-sm-4\">";
   echo "<h4 class= \"text-justify\">Last trained </h4>";
   echo "<table class=\"table-hover table-bordered table-striped\"><tr><th class = \"text-justify\">Rig Name</th><th>Ratname</th><th>Start Time</th><th></tr>";

@@ -5,7 +5,7 @@
   $dbname = "akrami_db";
   $db = new mysqli($servername, $username, $password, $dbname);//set your database handler
   $query = "SELECT * FROM sess_started where sessiondate like CURDATE() and was_ended like 0;";
-  $currdate = "SELECT CURDATE()";
+  $currdate = "SELECT CURDATE();";
   $result_date = $db->query($currdate);
   $result = $db->query($query);
   echo "<div class=\"col-sm-4\">";

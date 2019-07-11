@@ -37,6 +37,29 @@
     echo "var categories = $jsonCats; \n";
     echo "var subcats = $jsonSubCats; \n";
   ?>
+  function loadXMLDoc(){
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+     document.getElementById("currenttraining").innerHTML=xmlhttp.responseText; // your div
+    }
+   }
+    xmlhttp.open("GET","getcurrenttraining.php",true); //your php file
+    xmlhttp.send();
+ }
+ window.setInterval(function(){
+   loadXMLDoc();
+ }, 1000);
   function loadCategories(){
     //default the date of start and enddate
     document.getElementById("startdate").valueAsDate = new Date();
@@ -72,7 +95,9 @@
     <img src="./limlabheader.jpeg" class="img-fluid" alt="Responsive image">
     <h1 class="text-center display-3">LIMLab Internal</h1>
   </div>
-  <p class="text-justify">This page gives experimenters an overview of recent data on their animals. Please select the experimenter name, animal ID, and dates for which you want the information.</p>
+  <p class="text-justify">This page gives experimenters an overview of recent data on their animals. The table below shows information about currently training animals. If you want more information about previously trained animalsPlease select the experimenter name, animal ID, and dates for which you want the information.</p>
+  <!-- the div below displays current training-->
+  <div class="container" id="currenttraining"></div>
 <div class="col-sm">
 <form action="" method="post">
   Experimenter : <select id='experimenterSelect' name='experimenter'>
@@ -189,6 +214,12 @@ else {
 
 mysqli_close($conn);
 }
+
+if (isset($_POST["submitvideo"])){
+
+  $sql = "SELECT * from sessions where sessiondate between '".$conn->real_escape_string($_POST["startdate"])."' and '".$conn->real_escape_string($_POST["enddate"])."' and experimenter like '".$conn->real_escape_string($_POST["experimenter"]). "';";
+}
+
 ?>
 <footer class="page-footer font-small primary-color-dark">
 <br><br>

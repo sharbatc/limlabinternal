@@ -52,12 +52,13 @@
     {
     if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
-     document.getElementById("currenttraining").innerHTML=xmlhttp.responseText; 
+     document.getElementById("currenttraining").innerHTML=xmlhttp.responseText; // your div
+    }
    }
-    xmlhttp.open("GET","getcurrenttraining.php",true);
+    xmlhttp.open("GET","getcurrenttraining.php",true); //your php file
     xmlhttp.send();
  }
-  window.setInterval(function(){
+ window.setInterval(function(){
    loadXMLDoc();
  }, 1000);
   function loadCategories(){

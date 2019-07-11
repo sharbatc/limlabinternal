@@ -9,8 +9,8 @@
   $result = $db->query($query);
   echo "<div class = \"row\">";
   echo "<div class=\"col-sm-4\">";
-  echo "<h4 class= \"text-justify\">Presently training </h4>";
-  echo "<table class=\"table-hover table-bordered table-striped\"><tr><th class = \"text-justify\">Rig Name</th><th>Ratname</th><th>Start Time</th><th></tr>";
+  echo "<h4 class= \"text-center\">Presently training </h4>";
+  echo "<table class=\"table-hover table-bordered table-striped text-center\"><tr><th class = \"text-justify\">Rig Name</th><th>Ratname</th><th>Start Time</th><th></tr>";
   while ($row = $result->fetch_assoc()){
   	echo "<tr>"; 
   	echo "<td>" . $row['hostname'] . "</td>";
@@ -25,8 +25,8 @@
   $last_query = "("."SELECT * from sess_started where sessiondate like CURDATE() and was_ended like 1 ORDER BY starttime DESC limit 6)"." ORDER BY hostname;";
   $result = $db->query($last_query);
   echo "<div class=\"col-sm-4\">";
-  echo "<h4 class= \"text-justify\">Last trained </h4>";
-  echo "<table class=\"table-hover table-bordered table-striped\"><tr><th class = \"text-justify\">Rig Name</th><th>Ratname</th><th>Start Time</th><th></tr>";
+  echo "<h4 class= \"text-center\">Last trained </h4>";
+  echo "<table class=\"table-hover table-bordered table-striped text-center\"><tr><th class = \"text-justify\">Rig Name</th><th>Ratname</th><th>Start Time</th><th></tr>";
   while ($row = $result->fetch_assoc()){
   	echo "<tr>"; 
   	echo "<td>" . $row['hostname'] . "</td>";

@@ -10,7 +10,7 @@
   echo "<div class = \"row\">";
   echo "<div class=\"col-sm-4\">";
   echo "<h4 class= \"text-center\">Presently training </h4>";
-  echo "<table class=\"table-hover table-bordered table-striped text-center\" align=\"center\"><tr><th class = \"text-justify\">Rig Name</th><th>Ratname</th><th>Start Time</th><th></tr>";
+  echo "<table class=\"table-hover table-bordered table-striped text-center\" align=\"center\"><tr><th class = \"text-justify\">Rig</th><th>Ratname</th><th>Start Time</th><th></tr>";
   while ($row = $result->fetch_assoc()){
   	echo "<tr>"; 
   	echo "<td>" . $row['hostname'] . "</td>";
@@ -26,7 +26,7 @@
   $result = $db->query($last_query);
   echo "<div class=\"col-sm-4\">";
   echo "<h4 class= \"text-center\">Last trained </h4>";
-  echo "<table class=\"table-hover table-bordered table-striped text-center\" align=\"center\"><tr><th class = \"text-justify\">Rig Name</th><th>Ratname</th><th>Start Time</th><th>End Time</th></tr>";
+  echo "<table class=\"table-hover table-bordered table-striped text-center\" align=\"center\"><tr><th class = \"text-justify\">Rig</th><th>Ratname</th><th>Start Time</th><th>End Time</th></tr>";
   while ($row = $result->fetch_assoc()){
   	echo "<tr>"; 
   	echo "<td>" . $row['hostname'] . "</td>";

@@ -6,8 +6,9 @@
   $db = new mysqli($servername, $username, $password, $dbname);//set your database handler
   $query = "SELECT * FROM sess_started where sessiondate like CURDATE() and was_ended like 0;";
   $result = $db->query($query);
+  $date = $db->query("SELECT CURDATE();");
   echo "<div class=\"col-sm-4\">";
-  echo "<h3> Date </h3>";
+  echo "<h3 class= \"text-center\"> Date : ".$date."</h3>";
   echo "<table class=\"table-hover table-bordered table-striped\"><tr><th class = \"text-justify\">Rig Name</th><th>Ratname</th><th>Start Time</th><th></tr>";
   while ($row = $result->fetch_assoc()){
   	echo "<tr>"; 

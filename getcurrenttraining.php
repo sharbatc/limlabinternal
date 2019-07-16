@@ -37,7 +37,6 @@
     $endtimequery = "SELECT endtime from sessions where sessid like ".$row['sessid'].";";
     $endtime = $db->query($endtimequery);
     echo "<td>" . $endtime . "</td>";
-    echo "<td>" . 
   	echo "</tr>";
 	}
 

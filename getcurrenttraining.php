@@ -30,7 +30,7 @@
   echo "<table class=\"table-hover table-bordered table-striped text-center\" align=\"center\"><tr><th class = \"text-center\">Rig</th><th class = \"text-center\">Ratname</th><th class = \"text-center\">Start Time</th><th class = \"text-center\">End Time</th></tr>";
   while ($row = $result->fetch_assoc()){
   	echo "<tr>"; 
-  	echo "<td>" . "<a href=\"172.24.155.101:8000\" target=\"_blank\"". $row['hostname'] . "</a></td>";
+  	echo "<td>" . "<a href=\"172.24.155.101:8000\" target=\"_blank\">". $row['hostname'] . "</a></td>";
   	echo "<td>" . $row['ratname'] . "</td>";
   	echo "<td>" . $row['starttime'] . "</td>";
   	echo "</tr>";

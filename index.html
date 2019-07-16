@@ -11,6 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<!-- Put all client side functions in here -->
 <script type='text/javascript'>
   // Server side php code to fill the dropdown with experimenters and other details. 
   <?php
@@ -42,7 +43,7 @@
     mysqli_close($db);
   ?>
 
-  // Client side function to update, every second, previous and current training
+  // Function to update previous and current training
 
   function loadXMLDoc(){
     loadCategories();
@@ -59,15 +60,19 @@
     {
     if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
-     document.getElementById("currenttraining").innerHTML=xmlhttp.responseText; // your div
+     document.getElementById("currenttraining").innerHTML=xmlhttp.responseText; //add to given div
     }
    }
-    xmlhttp.open("GET","getcurrenttraining.php",true); //your php file
+    xmlhttp.open("GET","getcurrenttraining.php",true); //run the table generating php code
     xmlhttp.send();
  }
- window.setInterval(function(){
+
+  // Run said function every second
+
+  window.setInterval(function(){
    loadXMLDoc();
- }, 1000);
+  }, 1000);
+
   function loadCategories(){
     //default the date of start and enddate
     document.getElementById("startdate").valueAsDate = new Date();
@@ -103,11 +108,15 @@
     <img src="./limlabheader.jpeg" class="img-fluid" alt="Responsive image">
     <h1 class="text-center display-3">LIMLab Internal</h1>
   </div>
+
   <p class="text-justify">This page gives experimenters an overview of recent data on their animals. The table below shows information about currently training animals.</p>
-  <!-- the div below displays current training-->
+
+  <!-- the div below displays current training via the php code in getcurrentraining.php-->
   <div class="container" id="currenttraining"></div>
+
 <div class="col-sm">
   If you want more information about previously trained animals, please select the experimenter name, animal ID, and dates for which you want the information, from below.
+  
 <form action="" method="post">
   Experimenter : <select id='experimenterSelect' name='experimenter'>
   </select>

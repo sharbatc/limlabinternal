@@ -35,7 +35,7 @@
   	echo "<td>" . $row['ratname'] . "</td>";
   	echo "<td>" . $row['starttime'] . "</td>";
     $endtimequery = "SELECT endtime from sessions where sessid like ".$row['sessid'].";";
-    $endtime = $db->query();
+    $endtime = $db->query($endtimequery);
     echo "<td>" . $endtime . "</td>";
     echo "<td>" . 
   	echo "</tr>";

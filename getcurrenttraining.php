@@ -1,4 +1,4 @@
- <?php
+<?php
   $servername = "172.24.155.100";
   $username = "akrami";
   $password = "Akrami2019!";
@@ -22,6 +22,7 @@
   echo "</table><br>";
   echo "</div>";
 
+  // For some reason, "(" needed for the string to be parsed properly
   $last_query = "("."SELECT * from sess_started where sessiondate like CURDATE() and was_ended like 1 ORDER BY starttime DESC limit 6)"." ORDER BY hostname;";
   $result = $db->query($last_query);
   echo "<div class=\"col-sm-4\">";
@@ -40,4 +41,4 @@
   echo "</div>";
 
  mysqli_close($db);
- ?> 
+?> 

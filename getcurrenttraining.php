@@ -31,7 +31,7 @@
   while ($row = $result->fetch_assoc()){
   	echo "<tr>"; 
     $camera_url = "http://172.24.155.1".substr($row['hostname'], -2).":8000";
-  	echo "<td>" . "<a href=\"".$camera_url."\">".$row['hostname'] . "</a></td>";
+  	echo "<td>" . "<a href=\"".$camera_url."\" target = \"_blank\">".$row['hostname'] . "</a></td>";
   	echo "<td>" . $row['ratname'] . "</td>";
   	echo "<td>" . $row['starttime'] . "</td>";
   	echo "</tr>";

@@ -13,7 +13,8 @@
   echo "<table class=\"table-hover table-bordered table-striped text-center\" align=\"center\"><tr><th class = \"text-center\">Rig</th><th class = \"text-center\">Ratname</th><th class = \"text-center\">Start Time</th></tr>";
   while ($row = $result->fetch_assoc()){
   	echo "<tr>"; 
-  	echo "<td>" . $row['hostname'] . "</td>";
+    $camera_url = "http://172.24.155.1".substr($row['hostname'], -2).":8000";
+    echo "<td>" . "<a href=\"".$camera_url."\" target = \"_blank\">".$row['hostname'] . "</a></td>";
   	echo "<td>" . $row['ratname'] . "</td>";
   	echo "<td>" . $row['starttime'] . "</td>";
   	echo "</tr>";
@@ -30,10 +31,13 @@
   echo "<table class=\"table-hover table-bordered table-striped text-center\" align=\"center\"><tr><th class = \"text-center\">Rig</th><th class = \"text-center\">Ratname</th><th class = \"text-center\">Start Time</th><th class = \"text-center\">End Time</th></tr>";
   while ($row = $result->fetch_assoc()){
   	echo "<tr>"; 
-    $camera_url = "http://172.24.155.1".substr($row['hostname'], -2).":8000";
-  	echo "<td>" . "<a href=\"".$camera_url."\" target = \"_blank\">".$row['hostname'] . "</a></td>";
+    echo "<td>" . $row['hostname'] . "</td>";
   	echo "<td>" . $row['ratname'] . "</td>";
   	echo "<td>" . $row['starttime'] . "</td>";
+    $endtimeid = $row['sessid'];
+    $endtime = $db->query("SELECT endtime from sessions where sessid like".$endtimeid);
+    echo "<td>" . $endtime . "</td>";
+    echo "<td>" . 
   	echo "</tr>";
 	}
 

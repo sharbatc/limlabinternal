@@ -46,7 +46,6 @@
   // Function to update previous and current training
 
   function loadXMLDoc(){
-    loadCategories();
     var xmlhttp;
     if (window.XMLHttpRequest)
     {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -102,7 +101,7 @@
 
 </head>
 
-<body onload='loadXMLDoc()'>
+<body onload='loadCategories()'>
 <div class="container">
   <div class="page-header">
     <img src="./limlabheader.jpeg" class="img-fluid" alt="Responsive image">
@@ -116,7 +115,7 @@
 
 <div class="col-sm">
   If you want more information about previously trained animals, please select the experimenter name, animal ID, and dates for which you want the information, from below.
-  
+
 <form action="" method="post">
   Experimenter : <select id='experimenterSelect' name='experimenter'>
   </select>

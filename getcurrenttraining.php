@@ -9,7 +9,7 @@
   $result = $db->query($query);
   echo "<div class = \"row\">";
   echo "<div class=\"col-sm-6\">";
-  echo "<h4 class= \"text-center\">Presently training </h4>";
+  echo "<h4 class= \"text-center\">Currently training </h4>";
   echo "<table class=\"table-hover table-bordered table-striped text-center\" align=\"center\"><tr><th class = \"text-center\">Rig</th><th class = \"text-center\">Ratname</th><th class = \"text-center\">Start Time</th></tr>";
   while ($row = $result->fetch_assoc()){
   	echo "<tr>"; 

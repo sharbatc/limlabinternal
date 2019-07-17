@@ -1,3 +1,4 @@
+<!-- written by Sharbat for Akrami Lab 2019 -->
 <html lang="en">
 
 <!-- Add Bootstrap CDN -->
@@ -125,7 +126,6 @@
   End Date : <input type="date" name="enddate" id="enddate"><br><br>
   <input type="checkbox" name="masslog" value="mass_log"> Mass Log 
   <input type="checkbox" name="waterlog" value="water_log"> Water Log<br><br>
-  <input type = "submit" name="submit"> <input type="submit" name="submitvideo" value="Play Live Video" >
 </form>
 </div>
 </div>
@@ -230,11 +230,6 @@ else {
 }
 
 mysqli_close($conn);
-}
-
-if (isset($_POST["submitvideo"])){
-
-  $sql = "SELECT * from sessions where sessiondate between '".$conn->real_escape_string($_POST["startdate"])."' and '".$conn->real_escape_string($_POST["enddate"])."' and experimenter like '".$conn->real_escape_string($_POST["experimenter"]). "';";
 }
 
 ?>

@@ -24,7 +24,7 @@
   echo "</div>";
 
   // For some reason, "(" needed for the string to be parsed properly
-  $last_query = "("."SELECT * from sess_started where sessiondate like CURDATE() and was_ended like 1 ORDER BY starttime DESC limit 6)"." ORDER BY hostname;";
+  $last_query = "("."SELECT * from sess_started where sessiondate like CURDATE() and was_ended like 1 ORDER BY starttime DESC)"." ORDER BY hostname;";
   $result = $db->query($last_query);
   echo "<div class=\"col-sm-6\">";
   echo "<h4 class= \"text-center\">Last trained </h4>";

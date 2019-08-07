@@ -105,9 +105,9 @@
   Experimenter : <select id='experimenterSelect' name='experimenter'>
   </select>
   Animal ID : <select id='ratnameSelect' name='ratname'> 
-  </select> <br><br>
+  </select> 
   Start Date : <input type="date" name="startdate" id="startdate">
-  End Date : <input type="date" name="enddate" id="enddate"><br><br>
+  End Date : <input type="date" name="enddate" id="enddate">
   <input type="checkbox" name="masslog" value="mass_log"> Mass Log 
   <input type="checkbox" name="waterlog" value="water_log"> Water Log<br><br>
   <input type = "submit" name="submit"> <input type="submit" name="submitvideo" value="Play Live Video" >
@@ -200,9 +200,9 @@ if (mysqli_num_rows($result) > 0) {
   }
   else
   {
-  echo "<table class=\"table-hover table-bordered table-striped\"><tr><th class = \"text-justify\">Experimenter</th><th>Ratname</th><th class = \"text-justify\">Date</th><th class = \"text-justify\">Rigname</th><th class = \"text-center\">Start</th><th class = \"text-center\">End</th><th class = \"text-justify\">No. Trials</th><th class = \"text-justify\">Total Correct</th><th class = \"text-justify\">Left Correct</th><th class = \"text-justify\">Right Correct</th><th class = \"text-justify\">% Violations</th><th class = \"text-justify\">Left pokes</th><th class = \"text-justify\">Center pokes</th><th class = \"text-justify\">Right pokes</th></tr>";
+  echo "<table class=\"table-hover table-bordered table-striped\"><tr><th class = \"text-justify\">Experimenter</th><th>Ratname</th><th class = \"text-center\">Date</th><th class = \"text-center\">Protocol</th><th class = \"text-justify\">Rigname</th><th class = \"text-center\">Start</th><th class = \"text-center\">End</th><th class = \"text-justify\">No. Trials</th><th class = \"text-justify\">Total Correct</th><th class = \"text-justify\">Left Correct</th><th class = \"text-justify\">Right Correct</th><th class = \"text-justify\">% Violations</th><th class = \"text-justify\">Left pokes</th><th class = \"text-justify\">Center pokes</th><th class = \"text-justify\">Right pokes</th></tr>";
   while ( $row = $result->fetch_assoc()) {
-    echo "<tr><td>".$row["experimenter"]."</td><td>".$row["ratname"]."</td><td>".$row["sessiondate"]."</td><td>".$row["hostname"]."</td><td>".$row["starttime"]."</td><td>".$row["endtime"]."</td><td>".$row["n_done_trials"]."</td><td>".$row["total_correct"]."</td><td>".$row["left_correct"]."</td><td>".$row["right_correct"]."</td><td class=\"text-center\">".$row["percent_violations"]."</td><td class=\"text-center\">".$row["left_pokes"]."</td><td class=\"text-center\">".$row["center_pokes"]."</td><td class=\"text-center\">".$row["right_pokes"]."</td></tr>";
+    echo "<tr><td>".$row["experimenter"]."</td><td>".$row["ratname"]."</td><td>".$row["sessiondate"]."</td><td>".$row["hostname"]."</td><td>".$row["protocol"]."</td><td>".$row["starttime"]."</td><td>".$row["endtime"]."</td><td class=\"text-center\">".$row["n_done_trials"]."</td><td>".$row["total_correct"]."</td><td>".$row["left_correct"]."</td><td>".$row["right_correct"]."</td><td class=\"text-center\">".$row["percent_violations"]."</td><td class=\"text-center\">".$row["left_pokes"]."</td><td class=\"text-center\">".$row["center_pokes"]."</td><td class=\"text-center\">".$row["right_pokes"]."</td></tr>";
     }
   echo "</table>";
   echo "</div>";

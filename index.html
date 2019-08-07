@@ -1,44 +1,52 @@
-<?php
-  $servername = "172.24.155.100";
-  $username = "akrami";
-  $password = "Akrami2019!";
-  $dbname = "akrami_db";
-  $db = new mysqli($servername, $username, $password, $dbname);//set your database handler
-  $query = "SELECT distinct experimenter FROM rats where extant like 1;";
-  $result = $db->query($query);
-
-  while($row = $result->fetch_assoc()){
-    $categories[] = array("experimenter" => $row['experimenter']);
-  }
-
-  $query = "SELECT ratname, experimenter FROM rats where extant like 1;";
-  $result = $db->query($query);
-
-  while($row = $result->fetch_assoc()){
-    $subcats[$row['experimenter']][] = array("ratname" => $row['ratname']);
-  }
-
-  $jsonCats = json_encode($categories);
-  $jsonSubCats = json_encode($subcats);
-
-
-?>
+<!-- written by Sharbat for Akrami Lab 2019 -->
 <html lang="en">
+
+<!-- Add Bootstrap CDN -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
 <head>
   <title>LIMLab Internal</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Put all client side functions in here -->
 <script type='text/javascript'>
+  // Server side php code to fill the dropdown with experimenters and other details. 
   <?php
+    $servername = "172.24.155.100";
+    $username = "akrami";
+    $password = "Akrami2019!";
+    $dbname = "akrami_db";
+
+    $db = new mysqli($servername, $username, $password, $dbname);
+
+    $query = "SELECT distinct experimenter FROM rats where extant like 1;";
+    $result = $db->query($query);
+
+    while($row = $result->fetch_assoc()){
+      $categories[] = array("experimenter" => $row['experimenter']);
+    }
+
+    $query = "SELECT ratname, experimenter FROM rats where extant like 1;";
+    $result = $db->query($query);
+
+    while($row = $result->fetch_assoc()){
+      $subcats[$row['experimenter']][] = array("ratname" => $row['ratname']);
+    }
+
+    $jsonCats = json_encode($categories);
+    $jsonSubCats = json_encode($subcats);
     echo "var categories = $jsonCats; \n";
     echo "var subcats = $jsonSubCats; \n";
+    mysqli_close($db);
   ?>
+
+  // Function to update previous and current training
+
   function loadXMLDoc(){
-    loadCategories();
     var xmlhttp;
     if (window.XMLHttpRequest)
     {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -52,15 +60,19 @@
     {
     if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
-     document.getElementById("currenttraining").innerHTML=xmlhttp.responseText; // your div
+     document.getElementById("currenttraining").innerHTML=xmlhttp.responseText; //add to given div
     }
    }
-    xmlhttp.open("GET","getcurrenttraining.php",true); //your php file
+    xmlhttp.open("GET","getcurrenttraining.php",true); //run the table generating php code
     xmlhttp.send();
  }
- window.setInterval(function(){
+
+  // Run said function every second
+
+  window.setInterval(function(){
    loadXMLDoc();
- }, 1000);
+  }, 1000);
+
   function loadCategories(){
     //default the date of start and enddate
     document.getElementById("startdate").valueAsDate = new Date();
@@ -90,17 +102,21 @@
 
 </head>
 
-<body onload='loadXMLDoc()'>
+<body onload='loadCategories()'>
 <div class="container">
   <div class="page-header">
     <img src="./limlabheader.jpeg" class="img-fluid" alt="Responsive image">
     <h1 class="text-center display-3">LIMLab Internal</h1>
   </div>
+
   <p class="text-justify">This page gives experimenters an overview of recent data on their animals. The table below shows information about currently training animals.</p>
-  <!-- the div below displays current training-->
+
+  <!-- the div below displays current training via the php code in getcurrentraining.php-->
   <div class="container" id="currenttraining"></div>
+
 <div class="col-sm">
   If you want more information about previously trained animals, please select the experimenter name, animal ID, and dates for which you want the information, from below.
+
 <form action="" method="post">
   Experimenter : <select id='experimenterSelect' name='experimenter'>
   </select>
@@ -110,7 +126,7 @@
   End Date : <input type="date" name="enddate" id="enddate">
   <input type="checkbox" name="masslog" value="mass_log"> Mass Log 
   <input type="checkbox" name="waterlog" value="water_log"> Water Log<br><br>
-  <input type = "submit" name="submit"> <input type="submit" name="submitvideo" value="Play Live Video" >
+  <input type = "submit" name="submit">
 </form>
 </div>
 </div>
@@ -215,11 +231,6 @@ else {
 }
 
 mysqli_close($conn);
-}
-
-if (isset($_POST["submitvideo"])){
-
-  $sql = "SELECT * from sessions where sessiondate between '".$conn->real_escape_string($_POST["startdate"])."' and '".$conn->real_escape_string($_POST["enddate"])."' and experimenter like '".$conn->real_escape_string($_POST["experimenter"]). "';";
 }
 
 ?>
